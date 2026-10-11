@@ -1,0 +1,21 @@
+﻿body{
+background-color:#262626
+
+}
+.content{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 24px;
+    color:brown;
+    }
+.title
+{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 42px;
+    color:black;
+}
+#Short-Story{
+background-image: url('https://cdn.thecollector.com/wp-content/uploads/2023/04/hp-lovecraft-cthulhu-mythos.jpg?width=1200&quality=100&dpr=2');
+background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
