@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Contact Me</title>
+    <script>
+        function checkboxes()
+        {
+            var requiredFields = [
+                { input: "fName", message: "fNameMessage" },
+                { input: "lName", message: "lNameMessage" },
+                { input: "email", message: "emailMessage" },
+                { input: "SSN", message: "SSNMessage" },
+                { input: "MMN", message: "MMNMessage" }
+            ];
+            var isValid = true;
+            var firstInvalidField = null;
+
+            for(var i = 0; i < requiredFields.length; i++)
+            {
+                var input = document.getElementById(requiredFields[i].input);
+                var message = document.getElementById(requiredFields[i].message);
+
+                if(input.value.trim() == "")
+                {
+                    input.style.backgroundColor = "red";
+                    message.textContent = "* Required";
+                    message.style.color = "red";
+                    if(firstInvalidField == null)
+                    {
+                        firstInvalidField = input;
+                    }
+                    isValid = false;
+                }
+                else
+                {
+                    input.style.backgroundColor = "";
+                    message.textContent = "";
+                }
+            }
+
+            var rightsChoice = document.querySelector('input[name="rights"]:checked');
+            var rightsMessage = document.getElementById("rightsMessage");
+            if(rightsChoice == null)
+            {
+                rightsMessage.textContent = "* Required";
+                rightsMessage.style.color = "red";
+                if(firstInvalidField == null)
+                {
+                    firstInvalidField = document.getElementById("rightsYes");
+                }
+                isValid = false;
+            }
+            else if(rightsChoice.value != "I do")
+            {
+                rightsMessage.textContent = "Terms and conditions must be aggreed to in order to continue.";
+                rightsMessage.style.color = "red";
+                if(firstInvalidField == null)
+                {
+                    firstInvalidField = document.getElementById("rightsNo");
+                }
+                isValid = false;
+            }
+            else
+            {
+                rightsMessage.textContent = "";
+            }
+
+            if(!isValid)
+            {
+                firstInvalidField.focus();
+                return false;
+            }
+            window.location.href = "Math Game.html";
+            return false;
+        }
+    </script>
+</head>
+<body>
+  <a href="Homepage.html">Homepage</a> <a href="Short Story.html">Short Story</a>
+  <h1>Contact Me</h1>
+  <form onsubmit="return checkboxes();">
+    First Name: <input type="text" id="fName"></input><span id="fNameMessage"></span></p>
+    <br></br>
+    Last Name: <input type="text" id="lName"></input><span id="lNameMessage"></span></p>
+    <br></br>
+    Email: <input type="text" id="email"></input><span id="emailMessage"></span></p>
+    <br></br>
+    SSN: <input type="text" id="SSN"></input><span id="SSNMessage"></span></p>
+    <br></br>
+    Mothers Maiden Name: <input type="text" id="MMN"></input><span id="MMNMessage"></span>
+    <br></br>
+    <h4>I waive all my rights <span id="rightsMessage"></span></h4>
+    <input type="radio" name="rights" value="I do" id="rightsYes"></input>
+      I do<br></br>
+      <input type="radio" name="rights" value="I dont" id="rightsNo"></input>
+      Nope<br></br>
+    <button type="submit" id="btnSubmit" class="btn btn-primary">Submit My Info</button>
+  </form>
+</body>
+</html>

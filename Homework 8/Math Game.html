@@ -1,0 +1,91 @@
+<html>
+<title>for Loops</title>
+
+<head>
+    <script>
+        var actualAnswer;
+        var number1;
+        var number2;
+        var questionsAnswered = 0;
+        var questionsCorrect = 0;
+        var questionsWrong = 0;
+
+        function printQuestion() {
+            number1 = Math.floor(Math.random() * 10);
+            number2 = Math.floor(Math.random() * 10);
+            actualAnswer = number1 + number2;
+            document.getElementById("theQuestion").textContent = "What is " + number1 + "+" + number2 + "?";
+        }
+
+        function updateScore() {
+            document.getElementById("score").textContent =
+                "Questions answered: " + questionsAnswered +
+                " | Correct: " + questionsCorrect +
+                " | Wrong: " + questionsWrong +
+                " | Correct answers: " + questionsCorrect + " out of " + questionsAnswered + " questions answered this session.";
+        }
+
+        function checkAnswer() {
+            var answerText = document.getElementById("txtAnswer").value.trim();
+            if (answerText == "" || !Number.isFinite(Number(answerText))) {
+                document.getElementById("finalResult").textContent = "Please enter a number.";
+                return;
+            }
+
+            questionsAnswered++;
+            if (Number(answerText) == actualAnswer) {
+                questionsCorrect++;
+                document.getElementById("finalResult").textContent = "Good job!";
+                printQuestion();
+            } else {
+                questionsWrong++;
+                document.getElementById("finalResult").textContent = "Try Again!";
+            }
+
+            updateScore();
+            document.getElementById("txtAnswer").value = "";
+        }
+
+        function runGame() {
+            for (var i = 1; i < 6; i++) {
+                document.getElementById("message").innerHTML += "<h" + i + ">Welcome to our game!!!</h" + i + "></p>";
+            }
+            printQuestion();
+            updateScore();
+        }
+    </script>
+</head>
+
+<body onload="runGame();">
+
+    <form onsubmit="checkAnswer(); return false;">
+    <table>
+        <tr>
+            <td colspan="2">
+                <div id="message"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr size="1">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="theQuestion"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Your answer</td>
+            <td><input type="text" id="txtAnswer"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" id="btnSubmit">Submit</button></td>
+        </tr>
+    </table>
+    </form>
+    <div id="finalResult"></div>
+    <div id="score"></div>
+</body>
+
+</html>
